@@ -1,6 +1,6 @@
 import { IUserUpdate, IUser } from "../../interfaces/users";
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
+import User from "../../entities/user.entity";
 import { userResponseSchema } from "../../schemas/users.schemas";
 
 const updateUserService = async (

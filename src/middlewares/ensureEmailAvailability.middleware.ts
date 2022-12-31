@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import AppDataSource from "../data-source";
-import { User } from "../entities/user.entity";
+import User from "../entities/user.entity";
 import AppError from "../errors/AppError";
 
 const ensureEmailAvailabilityMiddleware = async (
@@ -12,7 +12,7 @@ const ensureEmailAvailabilityMiddleware = async (
   const foundEmail = await queryRepository.findOneBy({ email: req.body.email });
 
   if (foundEmail) {
-    throw new AppError("Email already registered");
+    throw new AppError("Email already registered", 409);
   }
 
   next();
