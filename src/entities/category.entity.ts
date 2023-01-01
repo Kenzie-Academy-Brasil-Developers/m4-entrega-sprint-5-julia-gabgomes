@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  BeforeInsert,
+  BeforeUpdate,
+} from "typeorm";
 import Property from "./property.entity";
 
 @Entity("categories")
@@ -11,6 +18,12 @@ class Category {
 
   @OneToMany(() => Property, (property) => property.category)
   property: Property[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  convertToLowerCase() {
+    this.name = this.name.toLowerCase();
+  }
 }
 
 export default Category;
