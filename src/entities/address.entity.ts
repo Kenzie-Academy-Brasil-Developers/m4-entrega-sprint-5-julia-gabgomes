@@ -9,7 +9,7 @@ class Address {
   @Column()
   district: string;
 
-  @Column()
+  @Column({ length: 8 })
   zipCode: string;
 
   @Column({ nullable: true })
@@ -18,7 +18,7 @@ class Address {
   @Column()
   city: string;
 
-  @Column()
+  @Column({ length: 2 })
   state: string;
 
   @OneToOne(() => Property, (property) => property.address)

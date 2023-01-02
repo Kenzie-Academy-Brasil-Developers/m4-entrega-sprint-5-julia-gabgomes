@@ -7,6 +7,10 @@ declare global {
         id: string;
         isAdm: boolean;
       };
+      category: {
+        id: string;
+        name: string;
+      };
     }
   }
 }

@@ -3,7 +3,7 @@ import AppDataSource from "../data-source";
 import User from "../entities/user.entity";
 import AppError from "../errors/AppError";
 
-const ensureIsValidIdMiddleware = async (
+const ensureUserIdIsValidMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -20,4 +20,4 @@ const ensureIsValidIdMiddleware = async (
   next();
 };
 
-export default ensureIsValidIdMiddleware;
+export default ensureUserIdIsValidMiddleware;
