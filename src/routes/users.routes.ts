@@ -13,7 +13,7 @@ import {
 import ensureEmailAvailabilityMiddleware from "../middlewares/ensureEmailAvailability.middleware";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
-import ensureIsValidIdMiddleware from "../middlewares/ensureIsValidId.middleware";
+import ensureUserIdIsValidMiddleware from "../middlewares/ensureUserIdIsValid.middleware";
 import verifyUserPermissionMiddleware from "../middlewares/verifyUserPermission.middleware";
 import verifyFieldToUpdateMiddleware from "../middlewares/verifyFieldToUpdate.middleware";
 
@@ -36,7 +36,7 @@ usersRoutes.patch(
   verifyFieldToUpdateMiddleware,
   ensureDataIsValidMiddleware(updateRequestSchema),
   ensureAuthMiddleware,
-  ensureIsValidIdMiddleware,
+  ensureUserIdIsValidMiddleware,
   verifyUserPermissionMiddleware,
   updateUserController
 );
@@ -44,7 +44,7 @@ usersRoutes.delete(
   "/:id",
   ensureAuthMiddleware,
   ensureIsAdmMiddleware,
-  ensureIsValidIdMiddleware,
+  ensureUserIdIsValidMiddleware,
   softDeleteUserController
 );
 

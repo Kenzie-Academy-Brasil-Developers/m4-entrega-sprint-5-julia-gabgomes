@@ -22,7 +22,7 @@ class Property {
   sold: boolean;
 
   @Column("decimal", { precision: 12, scale: 2 })
-  value: string;
+  value: number;
 
   @Column()
   size: number;
