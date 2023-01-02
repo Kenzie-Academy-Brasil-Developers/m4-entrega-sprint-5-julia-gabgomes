@@ -13,6 +13,8 @@ const createLoginService = async (loginData: IUserLogin): Promise<string> => {
 
   if (!foundUser) {
     throw new AppError("Invalid user/password key", 403);
+  } else if (foundUser.isActive == false) {
+    throw new AppError("User isn't active", 400);
   }
 
   const passwordMatch = compareSync(loginData.password, foundUser.password);
