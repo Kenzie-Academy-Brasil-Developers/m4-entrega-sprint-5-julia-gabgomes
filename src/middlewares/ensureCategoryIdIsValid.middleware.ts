@@ -8,7 +8,7 @@ const ensureCategoryIdIsValidMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const idToFind = req.body.categoryId;
+  const idToFind = req.params.id;
 
   const userRepository = AppDataSource.getRepository(Category);
   const foundCategory = await userRepository.findOneBy({ id: idToFind });

@@ -3,10 +3,11 @@ import categoryRequestSchema from "../schemas/categories.schemas";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
+import ensureCategoryIdIsValidMiddleware from "../middlewares/ensureCategoryIdIsValid.middleware";
 import {
   createCategoryController,
   getAllCategoriesController,
-  //   getPropertiesByCategoryController,
+  getPropertiesByCategoryController,
 } from "../controllers/categories.controller";
 
 const categoriesRoutes = Router();
@@ -19,6 +20,10 @@ categoriesRoutes.post(
   createCategoryController
 );
 categoriesRoutes.get("", getAllCategoriesController);
-// categoriesRoutes.get("/:id/properties", getPropertiesByCategoryController);
+categoriesRoutes.get(
+  "/:id/properties",
+  ensureCategoryIdIsValidMiddleware,
+  getPropertiesByCategoryController
+);
 
 export default categoriesRoutes;

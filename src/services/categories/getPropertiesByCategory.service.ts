@@ -1,21 +1,15 @@
-// import AppDataSource from "../../data-source";
-// import Category from "../../entities/category.entity";
-// import Property from "../../entities/property.entity";
-// import AppError from "../../errors/AppError";
+import AppDataSource from "../../data-source";
+import Category from "../../entities/category.entity";
 
-// const getPropertiesByCategoryService = async (id: string) => {
-//   const categoryRepository = AppDataSource.getRepository(Category);
-//   const propertyRepository = AppDataSource.getRepository(Property);
+const getPropertiesByCategoryService = async (id: string) => {
+  const categoryRepository = AppDataSource.getRepository(Category);
 
-//   try {
-//     const categorysProperties = await propertyRepository.find({
-//       relations: { category: true },
-//     });
-//     console.log(categorysProperties);
-//     return categorysProperties;
-//   } catch (error) {
-//     throw new AppError("Category doesn't exist", 404);
-//   }
-// };
+  const propertiesOfCategory = await categoryRepository.find({
+    where: { id: id },
+    relations: { property: true },
+  });
 
-// export default getPropertiesByCategoryService;
+  return propertiesOfCategory;
+};
+
+export default getPropertiesByCategoryService;
