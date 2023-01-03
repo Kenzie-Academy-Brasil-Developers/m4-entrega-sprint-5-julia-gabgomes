@@ -3,7 +3,6 @@ import categoryRequestSchema from "../schemas/categories.schemas";
 import ensureDataIsValidMiddleware from "../middlewares/ensureDataIsValid.middleware";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
-import ensureCategoryIdIsValidMiddleware from "../middlewares/ensureCategoryIdIsValid.middleware";
 import {
   createCategoryController,
   getAllCategoriesController,
@@ -20,10 +19,6 @@ categoriesRoutes.post(
   createCategoryController
 );
 categoriesRoutes.get("", getAllCategoriesController);
-categoriesRoutes.get(
-  "/:id/properties",
-  ensureCategoryIdIsValidMiddleware,
-  getPropertiesByCategoryController
-);
+categoriesRoutes.get("/:id/properties", getPropertiesByCategoryController);
 
 export default categoriesRoutes;
