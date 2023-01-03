@@ -19,8 +19,9 @@ const getPropertiesByCategoryController = async (
   req: Request,
   res: Response
 ) => {
-  const categoryId = req.params.id;
-  const propertiesOfCategory = await getPropertiesByCategoryService(categoryId);
+  const propertiesOfCategory = await getPropertiesByCategoryService(
+    req.params.id
+  );
 
   return res.status(200).json(propertiesOfCategory);
 };
