@@ -15,10 +15,10 @@ const getPropertiesByCategoryService = async (id: string) => {
 
   const propertiesOfCategory = await categoryRepository.find({
     where: { id: id },
-    relations: { property: true },
+    relations: { properties: true },
   });
 
-  return propertiesOfCategory;
+  return propertiesOfCategory[0];
 };
 
 export default getPropertiesByCategoryService;

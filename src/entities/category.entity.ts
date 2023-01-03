@@ -16,8 +16,8 @@ class Category {
   @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => Property, (property) => property.category)
-  property: Property[];
+  @OneToMany(() => Property, (properties) => properties.category)
+  properties: Property[];
 
   @BeforeInsert()
   @BeforeUpdate()
