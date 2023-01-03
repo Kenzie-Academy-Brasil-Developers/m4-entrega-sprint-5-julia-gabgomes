@@ -37,7 +37,7 @@ class Property {
   @JoinColumn()
   address: Address;
 
-  @ManyToOne(() => Category, (category) => category.property)
+  @ManyToOne(() => Category, (category) => category.properties)
   @JoinColumn()
   category: Category;
 
