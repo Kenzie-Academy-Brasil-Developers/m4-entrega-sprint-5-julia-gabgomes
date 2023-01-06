@@ -18,6 +18,7 @@ const getSchedulesByPropertyService = async (propertyId: string) => {
   const propertySchedules = await propertyRepository
     .createQueryBuilder("properties")
     .innerJoinAndSelect("properties.schedules", "schedules")
+    .innerJoinAndSelect("schedules.user", "user")
     .innerJoinAndSelect("properties.address", "address")
     .innerJoinAndSelect("properties.category", "category")
     .where("properties.id = :id", { id: propertyId })

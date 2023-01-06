@@ -8,6 +8,7 @@ import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
 import ensurePropertyIdIsValidMiddleware from "../middlewares/ensurePropertyIdIsValid.middleware";
 import ensureIsWorkingDateAndHourMiddleware from "../middlewares/ensureIsWorkingDateAndHour.middleware";
 import ensurePropertyScheduleAvailabilityMiddleware from "../middlewares/ensurePropertyScheduleAvailability.middleware";
+import ensureUserScheduleAvailabilityMiddleware from "../middlewares/ensureUserScheduleAvailability.middleware";
 
 const schedulesRoutes = Router();
 
@@ -17,6 +18,7 @@ schedulesRoutes.post(
   ensureIsWorkingDateAndHourMiddleware,
   ensurePropertyIdIsValidMiddleware,
   ensurePropertyScheduleAvailabilityMiddleware,
+  ensureUserScheduleAvailabilityMiddleware,
   createScheduleController
 );
 schedulesRoutes.get(
