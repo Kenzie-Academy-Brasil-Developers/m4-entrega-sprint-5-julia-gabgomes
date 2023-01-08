@@ -9,7 +9,7 @@ import scheduleRequestSchema from "../schemas/schedules.schemas";
 import ensureIsAdmMiddleware from "../middlewares/ensureIsAdm.middleware";
 import ensurePropertyIdIsValidMiddleware from "../middlewares/ensurePropertyIdIsValid.middleware";
 import ensureIsWorkingDateAndHourMiddleware from "../middlewares/ensureIsWorkingDateAndHour.middleware";
-import ensureScheduleAvailabilityMiddleware from "../middlewares/ensurePropertyScheduleAvailability.middleware";
+import ensureScheduleAvailabilityMiddleware from "../middlewares/ensureScheduleAvailability.middleware";
 
 const schedulesRoutes = Router();
 
