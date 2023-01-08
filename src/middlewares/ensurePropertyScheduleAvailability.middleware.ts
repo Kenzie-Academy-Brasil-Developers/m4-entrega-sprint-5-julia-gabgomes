@@ -3,25 +3,27 @@ import AppDataSource from "../data-source";
 import Property from "../entities/property.entity";
 import AppError from "../errors/AppError";
 
-const ensurePropertyScheduleAvailabilityMiddleware = async (
+const ensureScheduleAvailabilityMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const foundSchedule = await AppDataSource.getRepository(Property)
-    .createQueryBuilder("property")
-    .leftJoinAndSelect("property.schedules", "schedules")
-    .where("property.id = :id", { id: req.body.propertyId })
-    .andWhere("schedules.date = :date", { date: req.body.date })
-    .andWhere("schedules.hour = :hour", { hour: `${req.body.hour}:00` })
+  const propertiesRepository = AppDataSource.getRepository(Property);
+
+  const foundSchedule = await propertiesRepository
+    .createQueryBuilder("properties")
+    .innerJoinAndSelect("properties.address", "addresses")
+    .innerJoinAndSelect("properties.category", "categories")
+    .innerJoinAndSelect("properties.schedules", "schedules_users_properties")
+    .innerJoinAndSelect("schedules_users_properties.user", "user")
+    .where("properties.id = :id", { id: req.body.propertyId })
     .getOne();
 
-  if (foundSchedule) {
-    console.log("found the schedule");
+  if (!foundSchedule) {
+    next();
+  } else {
     throw new AppError("Property schedule already exists", 409);
   }
-
-  next();
 };
 
-export default ensurePropertyScheduleAvailabilityMiddleware;
+export default ensureScheduleAvailabilityMiddleware;
